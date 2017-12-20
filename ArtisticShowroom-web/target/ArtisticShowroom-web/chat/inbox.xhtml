@@ -1,0 +1,144 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/Template/Admin_template.xhtml">
+	
+	<ui:define name="content">
+		<div class="wrapper no-pad">
+			<div class="mail-box">
+				<div class="sm-side">
+				<div class="m-title">
+					<h3>Inbox</h3>
+				</div>
+				<div class="inbox-body">
+					<button type="button" class="btn btn-compose btn-lg"
+						data-toggle="modal" data-target="#myModal">Send New
+						Message</button>
+				</div>
+				</div>
+				<div class="lg-side" style="height: 1200px">
+				<div class="inbox-head">
+					<div class="mail-option">
+						<div class="pull-left all-check">
+							<label class="checkbox-custom check-success"> <input
+								type="checkbox" value="check-all" id="checkbox1"
+								onchange="checkAll()" /> 
+								<h:outputLabel for="checkbox1"> </h:outputLabel>
+								</label>
+						</div>
+
+						<div class="btn-group">
+							<h:form>
+								<h:commandLink action="#{MessageBean.DeleteMessages()}" value=""
+									styleClass="btn mini tooltips" 
+									onclick="updateToDelete()">
+									<i class=" fa fa-trash"></i>
+								</h:commandLink>
+								<input type="hidden" name="toDelete" id="toDelete" value="" />
+							</h:form>
+						</div>
+
+						<ul class="unstyled inbox-pagination">
+							<li><span>1-#{MessageBean.Inbox().size()} of
+									#{MessageBean.Inbox().size()}</span></li>
+							<li><a href="#" class="np-btn"><i
+									class="fa fa-angle-left  pagination-left"></i></a></li>
+							<li><a href="#" class="np-btn"><i
+									class="fa fa-angle-right pagination-right"></i></a></li>
+						</ul>
+					</div>
+					<div class="inbox-body no-pad">
+						<table class="table table-inbox table-hover">
+							<tbody id="allCheckBoxes">
+								<ui:repeat var="item" value="#{MessageBean.Inbox()}">
+									<tr class="">
+										<td class="inbox-small-cells"><label
+											class="checkbox-custom check-success"> <input
+												type="checkbox" id="c#{item.idMessage}"
+												data-value="#{item.idMessage}" class="messageCheckbox" /> <h:outputLabel
+												for="c#{item.idMessage}"> </h:outputLabel></label></td>
+										<td class="inbox-small-cells"><h:form>
+												<h:commandLink
+													action="#{MessageBean.Converstation(item.sender.id)}"
+													value="" title="View conversation">
+													<i class="fa fa-eye"></i>
+												</h:commandLink>
+											</h:form></td>
+										<td><a href="#" class="avatar"> <img
+												src="#{item.sender.pictureUrl}" alt="" /></a></td>
+										<td class="view-message dont-show">#{item.sender.login}</td>
+										<td class="view-message">#{item.text}</td>
+										<td class="view-message text-right">#{item.date}</td>
+									</tr>
+								</ui:repeat>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				</div>>
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog" >
+				<div class="modal-content">
+					<h:form>
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Send New Message</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Select a user</label>
+								<h:selectOneMenu value="#{MessageBean.message.receiver.id}"
+									styleClass="form-control">
+									<f:selectItems value="#{MessageBean.UsersList()}" var="item"
+										itemLabel="#{item.login}" itemValue="#{item.id}" />
+								</h:selectOneMenu>
+							</div>
+							<div class="form-group">
+								<h:inputText value="#{MessageBean.message.text}"
+									styleClass="form-control" />
+							</div>
+						</div>
+						<div class="modal-footer">
+							<h:commandButton
+								action="#{MessageBean.doSend(MessageBean.message.receiver.id)}"
+								value="Send" styleClass="btn btn-info" />
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+
+		<script>
+		function checkAll(){
+			var checkAll = document.getElementById('checkbox1');
+			var elements = document.querySelectorAll('#allCheckBoxes .messageCheckbox');
+			for(var i = 0;i &lt; elements.length ;i++){
+				elements[i].checked = checkAll.checked;
+			}
+		}
+
+		function updateToDelete(){
+			var toDelete = document.getElementById('toDelete');
+			var elements = document.querySelectorAll('#allCheckBoxes .messageCheckbox');
+			var tmp = "";
+			for(var i = 0;i &lt; elements.length ;i++){
+				if(elements[i].checked == true){
+					tmp = tmp + elements[i].getAttribute('data-value') + ';';
+				}
+			}
+			toDelete.value = tmp;
+		}
+		</script>
+
+	</ui:define>
+</ui:composition>
+

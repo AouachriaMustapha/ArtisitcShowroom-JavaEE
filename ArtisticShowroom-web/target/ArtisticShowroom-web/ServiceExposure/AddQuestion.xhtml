@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/Template/Admin_template.xhtml">
+
+
+	<ui:define name="content">
+			<h:head>
+		<h:outputStylesheet library="css" name="PlatsJour.css" />
+	</h:head>
+
+<h:form>
+<p:growl id="msg"/>
+	<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+		<h:outputLabel value="Question : " />
+		<p:inputTextarea rows="2" cols="20" value="#{addQuestion.question}" required="true" />
+		<h:outputLabel value="Answer: "/>
+		<p:selectBooleanCheckbox value="#{addQuestion.answer}" required="true">
+		<p:ajax update="msg" listener="#{addQuestion.addMessage()}"/>
+		</p:selectBooleanCheckbox>
+		
+		<br /> 
+    <h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+    <p:outputLabel value="Survey Name:" />
+    <p:selectOneMenu value="#{addQuestion.survey}" columns="3" converter="surveyConv" var="t"
+    filter="true" filterMatchMode="startsWith" >
+    <f:selectItems var="survey" itemLabel="#{survey.name}" value="#{addQuestion.surveys}" 
+    itemValue="#{survey}" />
+    
+        <p:column style="width:10%">
+    <h:outputText styleClass="ui-theme ui-theme-#{t.name}" />
+    </p:column>
+ 
+    <p:column>
+    <h:outputText value="#{t.note}" />
+    </p:column>
+    
+    </p:selectOneMenu>
+    </h:panelGrid>
+
+	<br />                
+				<p:commandButton action="#{addQuestion.addNewQuestion()}" value="Add Question" />
+			</h:panelGrid>
+
+</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,29 @@
+<ui:composition lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="/Template/Admin_template.xhtml">
+      
+      <ui:define name="content">
+	<h:body>
+
+		 
+<p:chart type="bar" model="#{stat2.barModel}" style="height:300px" widgetVar="chart"/>
+<p:commandButton type="button" value="Export" icon="ui-icon-extlink" onclick="exportChart()"/>
+ 
+<p:dialog widgetVar="dlg" showEffect="fade" modal="true" header="Chart as an Image" resizable="false">
+    <p:outputPanel id="output" layout="block" style="width:950px;height:310px"/>
+</p:dialog>		
+		
+<script type="text/javascript">
+function exportChart() {
+    $('#output').empty().append(PF('chart').exportAsImage());
+    PF('dlg').show();
+}
+</script>
+		
+		</h:body>
+		</ui:define>
+		</ui:composition>

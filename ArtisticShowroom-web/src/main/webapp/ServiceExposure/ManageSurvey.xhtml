@@ -1,0 +1,129 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/Template/Admin_template.xhtml">
+
+	<ui:define name="content">
+	<h:head>
+	<h:outputStylesheet library="css" name="PlatsJour.css" />
+	</h:head>
+
+		<h:form>
+		
+			<p:dataTable id="surveyss" border="1" value="#{listSurvey.surveys}" 
+			var="survey" headerClass="table" rowClasses="th" columnClasses="tr" 
+			captionClass="td" styleClass="table" captionStyle="td"
+			widgetVar="surveyTable" emptyMessage="No survey found with given criteria"
+			filteredValue="#{listSurvey.filtredSurvey}" style="width:1000px"
+			selection="#{listSurvey.survey}" 
+			selectionMode="single" rowKey="#{survey.id}">
+				<f:facet name="header">Survey Management</f:facet>
+				
+		<f:facet name="header">
+        <p:outputPanel>
+        <h:outputText value="Search all fields : " />
+        <p:inputText id="globalFilter" onkeyup="PF('surveyTable').filter()" style="width:150px" 
+        placeholder="Enter keyword"/>
+        </p:outputPanel>
+        </f:facet>
+				
+				<p:column filterBy="#{survey.id}" filterMatchMode="startsWith" filterStyle="display:none" >
+					<f:facet name="header">
+			id
+			</f:facet>
+					<h:outputText value="#{survey.id}" />
+				</p:column>
+				<p:column filterBy="#{survey.name}" filterMatchMode="startsWith" 
+				filterStyle="display:none" >
+					<f:facet name="header">
+			Name
+			</f:facet>
+					<h:outputText value="#{survey.name}" />
+				</p:column>
+				<p:column filterBy="#{survey.note}" filterMatchMode="startsWith" 
+				filterStyle="display:none" >
+					<f:facet name="header">
+			Note
+			</f:facet>
+					<h:outputText value="#{survey.note}" />
+				</p:column>
+
+
+				<p:column style="width:100px">
+					<f:facet name="header">
+			Delete Survey
+			</f:facet>
+					<h:commandButton action="#{listSurvey.deleteSurvey()}" value="Delete">
+					<f:setPropertyActionListener value="#{survey}" target="#{listSurvey.survey}" />	
+					</h:commandButton>
+				</p:column>
+				<p:column style="width:100px">
+					<f:facet name="header">
+			Update Survey
+			</f:facet>
+
+					<h:commandButton   value="Update">
+					<f:setPropertyActionListener value="#{survey}" target="#{listSurvey.survey}" />
+					<f:setPropertyActionListener value="true" target="#{listSurvey.renderUpdateForm}" />
+					</h:commandButton>
+				</p:column>
+			</p:dataTable>
+			
+				<p:contextMenu>
+        <p:menuitem value="View" update="surveyDetail" icon="ui-icon-search" oncomplete="PF('surveyDialog').show()"/>
+        <p:menuitem value="Delete" update="surveyss" icon="ui-icon-close" actionListener="#{listSurvey.deleteSurvey()}"/>
+    </p:contextMenu>
+    
+            <p:dialog header="Survey Info" widgetVar="surveyDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="surveyDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty listSurvey.survey}" columnClasses="label,value">
+                <f:facet name="header">
+                     
+                </f:facet>
+ 
+                <h:outputText value="Id:" />
+                <h:outputText value="#{listSurvey.survey.id}" />
+ 
+                <h:outputText value="Name Survey:" />
+                <h:outputText value="#{listSurvey.survey.name}" />
+ 
+                <h:outputText value="Note Survey:" />
+                <h:outputText value="#{listSurvey.survey.note}" />
+                
+                <h:outputText value="Exposure Name:" />
+                <h:outputText value="#{listSurvey.survey.exposure.name}" />
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+		</h:form>
+		<br />
+	<a href="AddQuestion.xhtml">
+	<i class="fa fa-chevron-right"></i>
+	</a>
+	<br />
+	<br />
+		<h:form rendered="#{listSurvey.renderUpdateForm}">
+			<h:panelGrid columns="2">
+		id:
+		<h:outputText value="#{listSurvey.survey.id}" />
+
+		Name Survey:
+		<p:inputText value="#{listSurvey.survey.name}" />
+		
+		Note Survey:
+		<p:inputText value="#{listSurvey.survey.note}" />
+
+			
+				<p:commandButton action="#{listSurvey.updateSurvey()}"
+					value="Submit" />
+				
+			</h:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+
+
+</ui:composition>

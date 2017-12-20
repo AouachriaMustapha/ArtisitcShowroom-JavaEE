@@ -1,0 +1,77 @@
+<ui:composition lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="/Template/Admin_template.xhtml">
+      
+      <ui:define name="content">
+	<h:head>
+		<title>List Of Exposures</title>
+		<h:outputStylesheet library="css" name="PlatsJour.css" />
+	</h:head>
+	<h:body>
+		 <h:form >
+<p:dataTable value="#{listExposure.exposures}" border="1" 
+var="exposure" headerClass="table" rowClasses="th" 
+columnClasses="tr" captionClass="td" styleClass="table" captionStyle="td"
+widgetVar="exposureTable" emptyMessage="No exposure found with given criteria"
+filteredValue="#{listExposure.filtredExposure}">
+
+        <f:facet name="header">
+        <p:outputPanel>
+        <h:outputText value="Search all fields : " />
+        <p:inputText id="globalFilter" onkeyup="PF('exposureTable').filter()" style="width:150px" 
+        placeholder="Enter keyword"/>
+        </p:outputPanel>
+        </f:facet>
+           
+
+	<p:column filterBy="#{exposure.name}" filterMatchMode="startsWith" 
+	filterStyle="display:none" >
+	<f:facet name="header">Exposure Name</f:facet>
+	<h:outputText value="#{exposure.name}" />
+	</p:column>
+	
+	<p:column filterBy="#{exposure.startDate}" filterMatchMode="startsWith" 
+	filterStyle="display:none" >
+	<f:facet name="header">Start Date Exposure</f:facet>
+	<h:outputText value="#{exposure.startDate}" />
+	</p:column>
+	
+   <p:column filterBy="#{exposure.endDate}" filterMatchMode="startsWith" 
+	filterStyle="display:none" >
+	<f:facet name="header">End Date Exposure</f:facet>
+	<h:outputText value="#{exposure.endDate}" />
+	</p:column>
+	
+	   
+	
+	   <p:column filterBy="#{exposure.space.adress}" filterMatchMode="startsWith" 
+	filterStyle="display:none">
+	<f:facet name="header">Adress Space</f:facet>
+	<h:outputText value="#{exposure.space.adress}" />
+	</p:column>
+	
+	   <p:column filterBy="#{exposure.survey.note}" filterMatchMode="startsWith" 
+	filterStyle="display:none">
+	<f:facet name="header">Note Survey</f:facet>
+	<h:outputText value="#{exposure.survey.note}" />
+	</p:column>
+	
+	</p:dataTable>
+	<br />
+	
+	<a href="ManageExposure.xhtml">
+	<i class="fa fa-chevron-right"></i>
+	</a>
+
+	</h:form>
+	
+	</h:body>
+	
+	</ui:define>
+
+
+</ui:composition>

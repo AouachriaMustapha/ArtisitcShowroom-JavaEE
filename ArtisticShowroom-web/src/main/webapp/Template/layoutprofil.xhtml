@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Artistic-Showroom</title>
+
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<link rel="shortcut icon"
+		href="#{request.contextPath}/resources/favicon.ico"
+		type="image/x-icon" />
+
+	<!-- **CSS - stylesheets** -->
+	<link id="default-css" rel="stylesheet"
+		href="#{request.contextPath}/template/style.css" type="text/css"
+		media="all" />
+
+	<!-- **Additional - stylesheets** -->
+	<link href="#{request.contextPath}/resources/css/animations.css"
+		rel="stylesheet" type="text/css" media="all" />
+	<link id="shortcodes-css"
+		href="#{request.contextPath}/resources/css/shortcodes.css"
+		rel="stylesheet" type="text/css" media="all" />
+	<link id="skin-css"
+		href="#{request.contextPath}/resources/skins/red/style.css"
+		rel="stylesheet" media="all" />
+	<link href="#{request.contextPath}/resources/css/isotope.css"
+		rel="stylesheet" type="text/css" media="all" />
+	<link href="#{request.contextPath}/resources/css/prettyPhoto.css"
+		rel="stylesheet" type="text/css" />
+	<link href="#{request.contextPath}/resources/css/pace.css"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet"
+		href="#{request.contextPath}/resources/css/responsive.css"
+		type="text/css" media="all" />
+
+	<link id="light-dark-css"
+		href="#{request.contextPath}/resources/dark/dark.css" rel="stylesheet"
+		media="all" />
+
+	<!-- **Font Awesome** -->
+	<link rel="stylesheet"
+		href="#{request.contextPath}/resources/css/font-awesome.min.css"
+		type="text/css" />
+
+	<!-- Modernizr -->
+	<script src="#{request.contextPath}/resources/js/modernizr.js"></script>
+</h:head>
+<h:body>
+	<div id="header-wrapper" class="dt-sticky-menu">
+		<!-- **header-wrapper Starts** -->
+		<div id="header" class="header">
+			<div class="container menu-container">
+				<a class="logo" href="index.html"><img alt="Logo"
+					src="#{request.contextPath}/resources/images/logo.png" /></a> <a
+					href="#" class="menu-trigger"> <span></span>
+				</a>
+			</div>
+		</div>
+
+		<nav id="main-menu">
+			<!-- Main-menu Starts -->
+			<div id="dt-menu-toggle" class="dt-menu-toggle">
+				Menu <span class="dt-menu-toggle-icon"></span>
+			</div>
+			<ul class="menu type1">
+				<!-- Menu Starts -->
+				<li class="current_page_item menu-item-simple-parent"><a
+					href="#{request.contextPath}/template/index.xhtml">Home <span
+						class="fa fa-home"></span></a></li>
+				<li class="menu-item-simple-parent"><a href="about.html">About
+						us <span class="fa fa-user-secret"></span>
+				</a></li>
+				<li class="current_page_item menu-item-simple-parent"><a
+					href="/ArtisticShowroom-web/page/Category/ListCategory.jsf">Category
+						<span class="fa fa-camera-retro"></span>
+				</a>
+				<ul class="sub-menu">
+						<li><a href="/ArtisticShowroom-web/page/Category/AddCategory.jsf">Add category</a></li>
+						<li><a href="/ArtisticShowroom-web/page/Category/ListCategory.jsf">List Category</a></li>
+					</ul> <a class="dt-menu-expand">+</a></li>
+				<li class="menu-item-simple-parent"><a
+					href="/ArtisticShowroom-web/page/Specialty/AffectSpecialty.jsf">Specialty
+						<span class="fa fa-cart-plus"></span>
+				</a>
+				<ul class="sub-menu">
+						<li><a href="/ArtisticShowroom-web/page/Specialty/AddSpecialty.jsf">Add Specialty</a></li>
+						<li><a href="/ArtisticShowroom-web/page/Specialty/ListSpecialty.jsf">List Specialty</a></li>
+					</ul> <a class="dt-menu-expand">+</a></li>
+				<li ><a
+					href="gallery.html">Gallery <span class="fa fa-camera-retro"></span></a>
+					</li>
+				<li class="menu-item-simple-parent"><a href="contact.html">contact<span
+						class="fa fa-map-marker"></span></a></li>
+				<li class="menu-item-simple-parent"><a
+					href="/ArtisticShowroom-web/public/authentification.jsf">Authentification
+						<span class="fa fa-paint-brush"></span>
+				</a>
+					<ul class="sub-menu">
+						<li><a href="/ArtisticShowroom-web/public/registration.jsf">
+								Register </a></li>
+
+					</ul> <a class="dt-menu-expand">+</a></li>
+			</ul>
+			<!-- Menu Ends -->
+		</nav>
+		<!-- Main-menu Ends -->
+	</div>
+	<!-- **header-wrapper Ends** -->
+
+
+	<div id="main">
+		<div class="breadcrumb">
+			<!-- *BreadCrumb Starts here** -->
+			<div class="container">
+				<!-- **Container Starts Here** -->
+				<h2>
+					 <span>Profile</span>
+				</h2>
+				<div class="user-summary">
+					<div class="account-links">
+						<a href="#">My Account</a> 
+					</div>
+					<div class="cart-count">
+						<a href="../chatprofil/send.jsf">Message</a> 
+					</div>
+					<div class="cart-count">
+						<a href="../chatprofil/send.jsf">Conversation</a> 
+						
+					</div>
+					<div class="cart-count">
+						<a href="../chatprofil/inbox.jsf">Inbox</a> 
+						
+					</div>
+					<div class="cart-count">
+						<a href="../Subscription/addsubscription.jsf">Subscription</a> 
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- *BreadCrumb Ends here** -->
+		<div class="container">
+			<div class="main-title animate" data-animation="pullDown"
+				data-delay="100">
+				<h3>Welcom </h3>
+
+			</div>
+			<section id="primary" class="content-full-width">
+
+				<div class="dt-sc-one-column column first">
+					
+				</div>
+			</section>
+
+		</div>
+	</div>
+
+	<div id="main">
+
+		<div id="content">
+			<ui:insert name="content"></ui:insert>
+		</div>
+	</div>
+
+
+
+	<footer id="footer" class="animate" data-animation="fadeIn"
+		data-delay="100">
+		<div class="container">
+			<div class="copyright">
+				<ul class="footer-links">
+					
+				</ul>
+				<ul class="payment-options">
+					<li><a href="#" class="fa fa-cc-amex"></a></li>
+					<li><a href="#" class="fa fa-cc-mastercard"></a></li>
+					<li><a href="#" class="fa fa-cc-visa"></a></li>
+					<li><a href="#" class="fa fa-cc-discover"></a></li>
+					<li><a href="#" class="fa fa-cc-paypal"></a></li>
+				</ul>
+				<p>
+					© 2017 <a href="#">ArtisticShowroom</a>. All rights reserved.
+				</p>
+			</div>
+		</div>
+	</footer>
+
+
+	<!-- **jQuery** -->
+	<script src="#{request.contextPath}/resources/js/jquery-1.11.2.min.js"
+		type="text/javascript"></script>
+
+
+	<script src="#{request.contextPath}/resources/js/jquery.tabs.min.js"></script>
+
+	<script type="text/javascript"
+		src="#{request.contextPath}/resources/js/jquery-migrate.min.js"></script>
+
+	<script type="text/javascript"
+		src="#{request.contextPath}/resources/js/jquery.isotope.min.js"></script>
+
+	<script type="text/javascript"
+		src="#{request.contextPath}/resources/js/jquery.isotope.perfectmasonry.min.js"></script>
+
+	<script src="#{request.contextPath}/resources/js/jquery.prettyPhoto.js"
+		type="text/javascript"></script>
+
+	<script
+		src="#{request.contextPath}/resources/js/jquery.validate.min.js"
+		type="text/javascript"></script>
+
+	<script
+		src="#{request.contextPath}/resources/js/jquery.bxslider.min.js"
+		type="text/javascript"></script>
+
+	<script src="#{request.contextPath}/resources/js/jsplugins.js"
+		type="text/javascript"></script>
+
+	<script src="#{request.contextPath}/resources/js/controlpanel.js"
+		type="text/javascript"></script>
+
+	<script src="#{request.contextPath}/resources/js/custom.js"></script>
+
+</h:body>
+</html>

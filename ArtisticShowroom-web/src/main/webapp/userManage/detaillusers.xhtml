@@ -1,0 +1,285 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/Template/Admin_template.xhtml">
+                	
+			
+  <ui:define name="content">
+		
+			
+<ul class="nav nav-tabs -warning" role="tablist">
+<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#" role="tab">DataTables</a>
+</li><li class="nav-item"><a class="nav-link" data-toggle="tab" href="#" role="tab">Artists</a>
+</li><li class="nav-item"><a class="nav-link" data-toggle="tab" href="#" role="tab">Owners</a>
+</li><li class="nav-item"><a class="nav-link" data-toggle="tab" href="#" role="tab">Clients</a>
+</li>
+</ul>			
+<div class="page-heading -dark">
+<h2>DataTables</h2>	
+</div>	
+
+<div class="row">
+<div class="col -lg-12">
+<!-- Panel -->
+<div class="panel -dark">
+<!-- Panel Heading -->
+<div class="panel-heading">
+<h4>Data Table Artists</h4>
+</div>
+<!-- /Panel Heading -->
+<div class="table-responsive"> 
+
+
+<h:form>
+<p:dataTable   var="a" value="#{userbean.artists}"  filteredValue="#{userbean.filtredartists}" widgetVar="userTable"
+             paginator="true"
+             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	         rowsPerPageTemplate="5,10,15" rowkey="#{a.login}">
+  
+      
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('userTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>
+  
+  
+   <p:column   headerText="image">
+  
+   <img width="100px" src="../resources/images/uploadfile/#{a.pictureUrl}" />
+       
+   </p:column>
+  
+  
+  <p:column filterBy="#{a.login}" headerText="Login">
+      
+          <h:outputText value="#{a.login}" />
+          
+          </p:column>
+ 
+           
+   
+  <p:column filterBy="#{a.firstName}"   headerText="First name" filterMatchMode="contains">
+        <h:outputText class="-primary"  value="#{a.firstName}" />
+   </p:column>
+    <p:column class="-success"  headerText="Email">
+    
+        <h:outputText class="-success" value="#{a.mail}" />
+    </p:column>
+ 
+    <p:column class="-info"  headerText="Age">
+    
+        <h:outputText class="-info" value="#{a.age}" />
+    </p:column>
+    
+     <p:column class="-info"  headerText="Phone">
+    
+        <h:outputText class="-info" value="#{a.phone}" />
+    </p:column>
+    
+     <p:column class="-info"  headerText="experience">
+    
+        <h:outputText class="-info" value="#{a.experience}" />
+    </p:column>
+     <p:column class="-info"  headerText="Description">
+    
+        <h:outputText class="-info" value="#{a.description}" />
+    </p:column>
+     <p:column>
+        <h:commandButton action="#{userbean.suppartist(a)}"
+						value="Supprimer">
+						<f:setPropertyActionListener value="#{user}"
+							target="#{userbean.user}"></f:setPropertyActionListener>
+					</h:commandButton>
+					</p:column>
+					<p:column>
+	  <h:commandButton action="#{userbean.modifUser()}"
+						value="Contact">
+						
+					</h:commandButton>
+    </p:column >
+</p:dataTable>
+   </h:form>
+
+   
+         	</div>
+			</div>
+			</div>
+			</div>
+			
+			
+<div class="row">
+<div class="col -lg-12">
+<!-- Panel -->
+<div class="panel -dark">
+<!-- Panel Heading -->
+<div class="panel-heading">
+<h4>Data Table Owners</h4>
+</div>
+<!-- /Panel Heading -->
+<div class="table-responsive"> 
+<h:form>
+<p:dataTable   var="a" value="#{userbean.owners}"  filteredValue="#{userbean.filterdowners}" widgetVar="userTable"
+             paginator="true"
+             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	         rowsPerPageTemplate="5,10,15" rowkey="#{a.login}">
+  
+      
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('userTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>
+  
+  
+  <p:column   headerText="image">
+  
+   <img width="100px" src="../resources/images/uploadfile/#{a.pictureUrl}" />
+       
+   </p:column>
+  
+  
+  <p:column filterBy="#{a.login}" headerText="Login">
+      
+          <h:outputText value="#{a.login}" />
+          
+          </p:column>
+ 
+           
+   
+  <p:column filterBy="#{a.firstName}"   headerText="First name" filterMatchMode="contains">
+        <h:outputText class="-primary"  value="#{a.firstName}" />
+   </p:column>
+    
+    <p:column class="-success"  headerText="Email">
+    
+        <h:outputText class="-success" value="#{a.mail}" />
+    </p:column>
+ 
+    <p:column   sortBy="{a.age}" headerText="Age">
+    
+        <h:outputText class="-info" value="#{a.age}" />
+    </p:column>
+    
+     <p:column class="-info"  headerText="Phone">
+    
+        <h:outputText class="-info" value="#{a.phone}" />
+    </p:column>
+     <p:column class="-info"  headerText="City">
+    
+        <h:outputText class="-info" value="#{a.city}" />
+        </p:column>
+        <p:column class="-info"  headerText="Street">
+         <h:outputText class="-info" value="#{a.street}" />
+    </p:column>
+     <p:column>
+        <h:commandButton action="#{userbean.suppowner(a)}"
+						value="Supprimer">
+						<f:setPropertyActionListener value="#{user}"
+							target="#{userbean.user}"></f:setPropertyActionListener>
+					</h:commandButton>
+					</p:column>
+					<p:column>
+	  <h:commandButton action="#{userbean.modifUser()}"
+						value="Contact">
+						
+					</h:commandButton>
+    </p:column >
+</p:dataTable>
+   </h:form>
+         	</div>
+			</div>
+			</div>
+			</div>	
+			
+			
+			
+			
+			
+			
+			<div class="row">
+<div class="col -lg-12">
+<!-- Panel -->
+<div class="panel -dark">
+<!-- Panel Heading -->
+<div class="panel-heading">
+<h4>Data Table Clients</h4>
+</div>
+<!-- /Panel Heading -->
+<div class="table-responsive"> 
+<h:form>
+<p:dataTable   var="a" value="#{userbean.clients}"  filteredValue="#{userbean.filtredclients}" widgetVar="userTable"
+             paginator="true"
+             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+	         rowsPerPageTemplate="5,10,15" rowkey="#{a.login}">
+  
+      
+        <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('userTable').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet>
+  
+  
+  
+  <p:column filterBy="#{a.login}" headerText="Login">
+      
+          <h:outputText value="#{a.login}" />
+          
+          </p:column>
+ 
+           
+   
+  <p:column filterBy="#{a.firstName}"   headerText="First name" filterMatchMode="contains">
+        <h:outputText class="-primary"  value="#{a.firstName}" />
+   </p:column>
+    
+    <p:column class="-success"  headerText="Email">
+    
+        <h:outputText class="-success" value="#{a.mail}" />
+    </p:column>
+ 
+    <p:column class="-info"  headerText="Age">
+    
+        <h:outputText class="-info" value="#{a.age}" />
+    </p:column>
+    
+     <p:column class="-info"  headerText="Phone">
+    
+        <h:outputText class="-info" value="#{a.phone}" />
+    </p:column>
+     <p:column class="-info"  headerText="City">
+    
+        <h:outputText class="-info" value="#{a.city}" />
+        </p:column>
+        <p:column class="-info"  headerText="Street">
+         <h:outputText class="-info" value="#{a.street}" />
+    </p:column>
+     <p:column>
+        <h:commandButton action="#{userbean.suppclient(a)}"
+						value="Supprimer">
+						<f:setPropertyActionListener value="#{user}"
+							target="#{userbean.user}"></f:setPropertyActionListener>
+					</h:commandButton>
+					</p:column>
+					<p:column>
+	  <h:commandButton action="#{userbean.modifUser()}"
+						value="Contact">
+						
+					</h:commandButton>
+    </p:column >
+</p:dataTable>
+   </h:form>
+         	</div>
+			</div>
+			</div>
+			</div>					
+			
+  </ui:define>
+</ui:composition>

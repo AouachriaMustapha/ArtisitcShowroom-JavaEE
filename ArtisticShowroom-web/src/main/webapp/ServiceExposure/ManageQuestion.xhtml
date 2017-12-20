@@ -1,0 +1,145 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/Template/Admin_template.xhtml">
+
+	<ui:define name="content">
+	<h:head>
+	<h:outputStylesheet library="css" name="PlatsJour.css" />
+	</h:head>
+
+		<h:form>
+		
+			<p:dataTable id="questions" border="1" value="#{listQuestion.questions}" 
+			var="question" headerClass="table" rowClasses="th" columnClasses="tr" 
+			captionClass="td" styleClass="table" captionStyle="td"
+			widgetVar="questionTable" emptyMessage="No question found with given criteria"
+			filteredValue="#{listQuestion.filtredQuestion}" style="width:1000px" 
+			selection="#{listQuestion.qs}" 
+			selectionMode="single" rowKey="#{question.id}">
+				<f:facet name="header">Questions Management</f:facet>
+				
+		<f:facet name="header">
+        <p:outputPanel>
+        <h:outputText value="Search all fields : " />
+        <p:inputText id="globalFilter" onkeyup="PF('questionTable').filter()" style="width:150px" 
+        placeholder="Enter keyword"/>
+        </p:outputPanel>
+        </f:facet>
+				
+				<p:column filterBy="#{question.id}" filterMatchMode="startsWith" filterStyle="display:none" >
+					<f:facet name="header">
+			id
+			</f:facet>
+					<h:outputText value="#{question.id}" />
+				</p:column>
+				<p:column filterBy="#{question.question}" filterMatchMode="startsWith" 
+				filterStyle="display:none" >
+					<f:facet name="header">
+			Question
+			</f:facet>
+					<h:outputText value="#{question.question}" />
+				</p:column>
+				<p:column filterBy="#{question.answer}" filterMatchMode="startsWith" 
+				filterStyle="display:none" >
+					<f:facet name="header">
+			Answer
+			</f:facet>
+					<h:outputText value="#{question.answer}" />
+				</p:column>
+				<p:column filterBy="#{question.survey.note}" filterMatchMode="startsWith" 
+				filterStyle="display:none" >
+					<f:facet name="header">
+			Survey
+			</f:facet>
+					<h:outputText value="#{question.survey.note}" />
+				</p:column>
+				<p:column style="width:100px">
+					<f:facet name="header">
+			Delete Question
+			</f:facet>
+					<h:commandButton action="#{listQuestion.deleteQuestion()}" value="Delete">
+					<f:setPropertyActionListener value="#{question}" target="#{listQuestion.qs}" />	
+					</h:commandButton>
+				</p:column>
+				<p:column style="width:100px">
+					<f:facet name="header">
+			Update Question
+			</f:facet>
+
+					<h:commandButton   value="Update">
+					<f:setPropertyActionListener value="#{question}" target="#{listQuestion.qs}" />
+					<f:setPropertyActionListener value="true" target="#{listQuestion.renderUpdateForm}" />
+					</h:commandButton>
+				</p:column>
+			</p:dataTable>
+			
+	<p:contextMenu>
+        <p:menuitem value="View" update="questionDetail" icon="ui-icon-search" oncomplete="PF('questionDialog').show()"/>
+        <p:menuitem value="Delete" update="questions" icon="ui-icon-close" actionListener="#{listQuestion.deleteQuestion()}"/>
+    </p:contextMenu>
+    
+        <p:dialog header="Question Info" widgetVar="questionDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="questionDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty listQuestion.qs}" columnClasses="label,value">
+                <f:facet name="header">
+                     
+                </f:facet>
+ 
+                <h:outputText value="Id:" />
+                <h:outputText value="#{listQuestion.qs.id}" />
+ 
+                <h:outputText value="Question" />
+                <h:outputText value="#{listQuestion.qs.question}" />
+ 
+                <h:outputText value="Answer:" />
+                <h:outputText value="#{listQuestion.qs.answer}" />
+                
+                <h:outputText value="Survey Note:" />
+                <h:outputText value="#{listQuestion.qs.survey.note}" />
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+		</h:form>
+
+		<br />
+			<a href="AddExposure.xhtml">
+	<i class="fa fa-chevron-right"></i>
+	</a>
+	<br />
+		<br />
+		<h:form rendered="#{listQuestion.renderUpdateForm}">
+		
+			<h:panelGrid columns="2">
+			
+		id:
+		<h:outputText value="#{listQuestion.qs.id}" />
+
+		Question:
+		<p:inputText value="#{listQuestion.qs.question}" />
+		<br />
+		<p:growl id="msg"/>
+		Answer:
+		<p:selectBooleanCheckbox value="#{listQuestion.qs.answer}" required="true">
+		<p:ajax update="msg" listener="#{listQuestion.addMessage()}"/>
+		</p:selectBooleanCheckbox>
+		
+		<br />
+ 		Survey:
+ 		<br />
+ 		<br />
+		<p:inputText value="#{listQuestion.qs.survey.note}" />
+			
+				<p:commandButton action="#{listQuestion.updateQuestion()}"
+					value="Submit" />
+				
+			</h:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+
+
+</ui:composition>

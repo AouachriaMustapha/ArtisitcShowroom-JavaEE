@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/Template/Admin_template.xhtml">
+
+
+	<ui:define name="content">
+			<h:head>
+		<h:outputStylesheet library="css" name="PlatsJour.css" />
+	</h:head>
+
+<h:form>
+	<h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Exposure Name : " />
+		<p:inputText value="#{addExposure.name}" required="true" />
+		<h:outputLabel value="Start Date : " />
+		<p:inputText value="#{addExposure.startDate}" required="true" />
+		<h:outputLabel value="End Date : " />
+		<p:inputText value="#{addExposure.endDate}" required="true" />
+		
+	<br /> 
+	<br />
+	<br />
+		
+    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+    <p:outputLabel value="Artwork :" />
+    <p:selectCheckboxMenu value="#{addExposure.selectedArtworks}" columns="3" converter="artConv" 
+    filter="true" filterMatchMode="startsWith" multiple="true" label="Artwork Name">
+    <f:selectItems var="art" itemLabel="#{art.name}" value="#{addExposure.artworks}" itemValue="#{art}"/>
+    </p:selectCheckboxMenu>	
+	</h:panelGrid>
+      
+    <br /> 
+      
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+			<p:outputLabel value="Space Name :"/>
+			<p:selectOneMenu value="#{addExposure.space}" columns="3" converter="spaceConv"
+			effect="fade" filter="true" filterMatchMode="startsWith" var="t">
+			<f:selectItems value="#{addExposure.spaces}" var="space" itemLabel="#{space.name}" 
+			itemValue="#{space}" />
+			<p:column style="width:10%">
+            <h:outputText styleClass="ui-theme ui-theme-#{t.name}" />
+            </p:column>
+ 
+            <p:column>
+            <h:outputText value="#{t.adress}" />
+            </p:column>
+			
+			</p:selectOneMenu> 
+			</h:panelGrid>
+		
+	<br /> 
+		
+    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+    <p:outputLabel value="Survey Name:" />
+    <p:selectOneMenu value="#{addExposure.survey}" columns="3" converter="surveyConv" var="t"
+    filter="true" filterMatchMode="startsWith" >
+    <f:selectItems var="survey" itemLabel="#{survey.name}" value="#{addExposure.surveys}" 
+    itemValue="#{survey}" />
+    
+        <p:column style="width:10%">
+    <h:outputText styleClass="ui-theme ui-theme-#{t.name}" />
+    </p:column>
+ 
+    <p:column>
+    <h:outputText value="#{t.note}" />
+    </p:column>
+    
+    </p:selectOneMenu>
+    </h:panelGrid>
+
+	<br />                
+				<p:commandButton action="#{addExposure.addExposurex()}" value="Add Exposure" />
+			</h:panelGrid>
+
+</h:form>
+	</ui:define>
+</ui:composition>

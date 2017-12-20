@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/Template/layoutprofil.xhtml" >
+                	
+			
+			 <ui:define name="content">
+		<div class="main-title animate" data-animation="pullDown"
+				data-delay="100">
+				<h3>My profile</h3>
+				
+			</div>	
+	
+	
+	
+	
+	<img class="-responsive -round _margin-1x" src="../resources/images/uploadfile/#{a.pictureUrl}" />		
+	<table class="table -dark">	
+	<tr>
+   <td> <h:outputText value="Login:" /> </td>
+    
+  <td>  <h:outputText value="#{authBean.user.login}" />	</td>
+    </tr>
+    <tr>
+	 <td><h:outputText value="First Name:" /> </td>
+   <td> <h:outputText value="#{authBean.user.firstName}" /> </td>
+     </tr>
+ 
+ <tr>
+  <td>  <h:outputText value="Last Name" /> </td>
+  <td>  <h:outputText value="#{authBean.user.lastName}" /> </td>
+    </tr>
+    <tr>
+  <td>  <h:outputText value="Age:" /> </td>
+  <td>  <h:outputText value="#{authBean.user.age}" /> </td>
+  </tr>
+  <tr>
+    <td> <h:outputText value="Email:" /> </td>
+  <td>  <h:outputText value="#{authBean.user.mail}" />  </td>
+    </tr>
+       <tr>
+   <td> <h:outputText value="Login:" /> </td>
+ <td>   <h:outputText value="#{authBean.user.login}" /> </td>
+    </tr>
+    </table>
+   
+   
+   
+	
+			
+		
+			
+			
+			</ui:define>		
+			
+</ui:composition>

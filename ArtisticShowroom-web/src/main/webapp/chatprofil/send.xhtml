@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/Template/layoutprofil.xhtml">
+	
+<ui:define name="content">
+<div class="content -dark -with-left-sidebar -collapsible">
+    <aside class="-dark -left -with-left-sidebar -collapse-with-sidebar -collapsible">            
+   <div class="mail-sidebar">
+   <div class="mail-sidebar-header -fixed-height">
+   <h3>Message</h3>
+   <p class="_text-muted">Welcome to Artistic Showroom's beautiful Message service!</p>
+   <a class="btn -primary -block" href="">Compose</a>
+   </div>
+   <nav class="mail-sidebar-nav">
+   <ul class="list-unstyled">
+   <li class="">
+   <a href="listmessage.jsf"> 
+   <i class="fa fa-inbox"></i>  <div class="tag -dark">Inbox </div></a>
+   </li>
+   
+   <li>
+   <a href=""> <i class="fa fa-envelope"></i> Sent</a></li>
+   </ul>
+   </nav>
+   </div>
+   
+   <!-- /Mail Sidebar -->
+   </aside>
+   <div class="beside mail -left-aside -collapse-with-sidebar -collapsible">
+ <div class="container-fluid"><div class="row">
+<div class="col -xs-12">
+<div class="box-white">
+<div class="form form-post-comment">
+<div class="left-input">
+	<h:form>
+	
+	
+	<div id="email-body">
+		<h:inputTextarea value="#{MessageBean.message.text}" />
+		</div>
+		<div class="form-group _margin-top-1x">
+		<h:selectOneMenu value="#{MessageBean.otherUserId}">
+				<f:selectItems value="#{MessageBean.UsersList()}" var="item" itemLabel="#{item.login}" itemValue="#{item.id}" />
+		</h:selectOneMenu>
+		</div>
+		<h:commandButton styleClass="dt-sc-button small type2" action="#{MessageBean.doSend(MessageBean.otherUserId)}" value="Send" />
+        <h:commandButton styleClass="dt-sc-button small type2" action="#{MessageBean.Converstation(MessageBean.otherUserId)}" value="Send Converastion" />
+	</h:form>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	
+		</ui:define>
+</ui:composition>
+

@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui"
+	template="/Template/Admin_template.xhtml">
+	
+	<ui:define name="content">
+	
+	<script src="../resources/assets/js/jquery/jquery.min.js" type="text/javascript"></script>	
+	<h1>
+Subscription List</h1>
+	<hr />
+
+	<h:form id="allsubscriptions" enctype="multipart/form-data">
+		
+	<div class="col-md-6">
+			
+				
+				<div class="portlet-body">
+
+				
+
+<!-- Panel Heading --><div class="panel-heading"/><h4>Subscriptions List</h4></div>
+
+<table class="table -dark dataTable no-footer" id="datatable" role="grid" aria-describedby="datatable_info"><thead><tr role="row">
+
+<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 221px;">Name</th>
+<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 94px;">Last Name</th>
+<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Progress: activate to sort column ascending" style="width: 102px;">Type</th>
+<th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 15px;">Price</th>
+<th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 27px;">Status</th>
+<th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 27px;">Start date</th>
+<th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 27px;">End date</th>
+<th class="sorting_asc" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="#: activate to sort column descending" style="width: 27px;">Action</th>
+
+
+</tr>
+</thead>
+	<tbody>
+						<ui:repeat value="#{subscriptionBean.subscriptions}" var="s">
+
+<tr role="row" class="odd">
+
+<td class="-user -detailed sorting_1">#{s.artist.firstName}</td>
+<td class="-user -detailed sorting_1">#{s.artist.lastName}</td>
+<td class="-user -detailed sorting_1">#{s.type}</td>
+<td class="-user -detailed sorting_1">#{s.price}</td>
+<td class="-user -detailed sorting_1">#{s.etat}</td>
+<td class="-user -detailed sorting_1">#{s.datedebut}</td>
+<td class="-user -detailed sorting_1">#{s.datefin}</td>
+									
+									
+									<td class="-user -detailed sorting_1"><h:commandButton value="Delete"
+											action="#{subscriptionBean.doDelete(s)}" update=":allsubscriptions"
+											class="btn green uppercase" /><br/>
+											<h:commandButton value="Confirm"
+											action="#{subscriptionBean.doConfirm(s)}" update=":allsubscriptions"
+											class="btn green uppercase" />
+											<h:commandButton value="Reduce Subscription"
+											action="#{subscriptionBean.doreduce(s)}" update=":allsubscriptions" 
+											class="btn green uppercase" />
+											
+									</td>
+								</tr>
+							</ui:repeat>
+						</tbody>
+					</table>
+				</div>
+	
+	</h:form>
+	</ui:define>
+</ui:composition>

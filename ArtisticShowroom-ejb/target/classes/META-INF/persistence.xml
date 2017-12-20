@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="ArtisticShowroom-ejb">
+		<jta-data-source>java:/showroomDS</jta-data-source>
+		<class>esprit.ArtisticShowroom.persistence.Administrator</class>
+		<class>esprit.ArtisticShowroom.persistence.AnswerSurvey</class>
+		<class>esprit.ArtisticShowroom.persistence.Artist</class>
+		<class>esprit.ArtisticShowroom.persistence.BookingPurchasing</class>
+		<class>esprit.ArtisticShowroom.persistence.Category</class>
+		<class>esprit.ArtisticShowroom.persistence.Claims</class>
+		<class>esprit.ArtisticShowroom.persistence.Client</class>
+		<class>esprit.ArtisticShowroom.persistence.Details</class>
+		<class>esprit.ArtisticShowroom.persistence.DetailsPk</class>
+		<class>esprit.ArtisticShowroom.persistence.Metting</class>
+		<class>esprit.ArtisticShowroom.persistence.MettingPk</class>
+		<class>esprit.ArtisticShowroom.persistence.Owner</class>
+		<class>esprit.ArtisticShowroom.persistence.Specialty</class>
+		<class>esprit.ArtisticShowroom.persistence.User</class>
+		<properties>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.show_sql" value="true"/>
+		</properties>
+	</persistence-unit>
+</persistence>

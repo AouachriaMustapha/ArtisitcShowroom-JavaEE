@@ -1,0 +1,14 @@
+<ui:composition lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      template="/Template/Admin_template.xhtml">
+      
+    <ui:define name="content">
+	<h:body>
+<p:chart type="pie" model="#{stat.pieModel1}" style="width:600px;height:400px" widgetVar="chart"/>
+	</h:body>
+	</ui:define>
+</ui:composition>

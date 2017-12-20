@@ -1,0 +1,119 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/Template/Admin_template.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+                	
+			<ui:define name="content">
+			
+		<div class="panel-body">
+		
+<div class="breadcrumb -light"><a class="breadcrumb-item" href="#"> <i class="fa fa-home"></i> </a>
+ <a class="breadcrumb-item" href="#">Dashboard</a>
+ <div class="breadcrumb-item -active">Profil</div></div>
+		
+		</div>	
+			
+	
+	<img class="-responsive -round _margin-1x" src="../resources/images/uploadfile/#{authBean.user.pictureUrl}" />		
+	<table class="table -dark">	
+	<tr>
+   <td> <h:outputText value="Login:" /> </td>
+    
+  <td>  <h:outputText value="#{authBean.user.login}" />	</td>
+    </tr>
+    <tr>
+	 <td><h:outputText value="First Name:" /> </td>
+   <td> <h:outputText value="#{authBean.user.firstName}" /> </td>
+     </tr>
+ 
+ <tr>
+  <td>  <h:outputText value="Last Name" /> </td>
+  <td>  <h:outputText value="#{authBean.user.lastName}" /> </td>
+    </tr>
+    <tr>
+  <td>  <h:outputText value="Age:" /> </td>
+  <td>  <h:outputText value="#{authBean.user.age}" /> </td>
+  </tr>
+  <tr>
+    <td> <h:outputText value="Email:" /> </td>
+  <td>  <h:outputText value="#{authBean.user.mail}" />  </td>
+    </tr>
+       <tr>
+   <td> <h:outputText value="Login:" /> </td>
+ <td>   <h:outputText value="#{authBean.user.login}" /> </td>
+    </tr>
+    </table>
+   
+   
+   
+   <button type="button" class="btn -dark _margin-bottom-sm"
+						data-toggle="modal" data-target="#myModal">Update Profile
+						</button>	
+			
+			
+			
+			
+
+			
+			
+			
+			<div class="modal animated -dark" id="myModal"   data-show="" data-hide="hinge">
+			<div class="modal-dialog">
+			<div class="modal-content -padded">
+					<h:form>
+						<div class="modal-header">
+							<button class="modal-close" data-dismiss="modal"> <i class="pe pe-close"></i> </button>
+							<h4 class="modal-title" id="myModalLabel">Update Profile</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+							<table class="table -dark">	
+	<tr>
+   <td> <h:outputText value="Login:" /> </td>
+    
+  <td>  <h:inputText value="#{authBean.user.login}" />	</td>
+    </tr>
+    <tr>
+	 <td><h:outputText value="First Name:" /> </td>
+   <td> <h:inputText value="#{authBean.user.firstName}" /> </td>
+     </tr>
+ 
+ <tr>
+  <td>  <h:outputText value="Last Name" /> </td>
+  <td>  <h:inputText value="#{authBean.user.lastName}" /> </td>
+    </tr>
+    <tr>
+  <td>  <h:outputText value="Age:" /> </td>
+  <td>  <h:inputText value="#{authBean.user.age}" /> </td>
+  </tr>
+  <tr>
+    <td> <h:outputText value="Email:" /> </td>
+  <td>  <h:inputText value="#{authBean.user.mail}" />  </td>
+    </tr>
+       <tr>
+   <td> <h:outputText value="Login:" /> </td>
+ <td>   <h:inputText value="#{authBean.user.login}" /> </td>
+    </tr>
+    </table>
+							</div>
+					
+						</div>
+						<div class="modal-footer">
+							<h:commandButton
+								action="#{inscrib.modifuser()}"
+								value="Update" styleClass="btn btn-info" />
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+			
+			
+			
+			
+			
+			</ui:define>		
+			
+</ui:composition>

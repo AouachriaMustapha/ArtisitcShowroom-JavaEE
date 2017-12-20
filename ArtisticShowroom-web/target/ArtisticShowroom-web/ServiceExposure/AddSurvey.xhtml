@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/Template/Admin_template.xhtml">
+
+
+	<ui:define name="content">
+			<h:head>
+		<h:outputStylesheet library="css" name="PlatsJour.css" />
+	</h:head>
+
+<h:form>
+	<h:panelGrid columns="2" cellpadding="5">
+		<h:outputLabel value="Survey Name : " />
+		<p:inputText value="#{addSurvey.name}" required="true" />
+		<h:outputLabel value="Note : " />
+		<p:inputText value="#{addSurvey.note}" required="true" />
+		
+		
+
+	<br /> 
+	<br />                
+				<p:commandButton action="#{addSurvey.addNewSurvey()}" value="Add Survey" />
+			</h:panelGrid>
+
+</h:form>
+	</ui:define>
+</ui:composition>
